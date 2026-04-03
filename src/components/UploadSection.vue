@@ -49,42 +49,10 @@
       </button>
     </div>
 
-    <!-- Search Options -->
-    <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 px-4">
-      <div class="flex items-center gap-4 bg-gray-100/50 p-1 rounded-2xl border border-gray-100">
-        <button 
-          @click="isGlobal = false"
-          :class="[!isGlobal ? 'bg-white text-blue-900 shadow-md scale-105' : 'text-gray-400 hover:text-gray-600']"
-          class="flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
-          National Registry
-        </button>
-        <button 
-          @click="isGlobal = true"
-          :class="[isGlobal ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 scale-105' : 'text-gray-400 hover:text-gray-600']"
-          class="flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-          </svg>
-          Global Search
-        </button>
-      </div>
-
-      <div class="flex items-center gap-6 text-sm text-gray-400 font-medium whitespace-nowrap">
-        <div class="flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M2.166 4.9L10 1.554 17.834 4.9c.427.182.723.633.723 1.14v5.04c0 3.328-2.361 6.17-5.556 7.143L10 19l-3.001-.817C3.806 17.21 1.445 14.368 1.445 11.041v-5.04c0-.507.296-.958.721-1.14zM10 3.062L4.313 5.5v4.54a7.001 7.001 0 004.582 6.517l1.105.301 1.105-.301a7.001 7.001 0 004.582-6.517V5.5L10 3.062z" clip-rule="evenodd" />
-          </svg>
-          {{ isGlobal ? 'Interpol Biometric Handshake' : 'Secure National Transfer' }}
-        </div>
-        <div class="flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-          Gateway Ready
-        </div>
+    <!-- Unified Search Label -->
+    <div class="mt-8 flex flex-col items-center justify-center gap-4 px-4">
+      <div class="bg-blue-50/50 px-6 py-2 rounded-full border border-blue-100/50 text-blue-600 font-bold text-xs uppercase tracking-[0.25em] animate-pulse">
+        Universal Identity Recognition Engine
       </div>
     </div>
   </div>
@@ -96,7 +64,6 @@ import { ref, watch } from 'vue'
 const fileInput = ref(null)
 const selectedFile = ref(null)
 const previewUrl = ref(null)
-const isGlobal = ref(false)
 const emit = defineEmits(['verify'])
 
 watch(selectedFile, (newVal) => {
@@ -125,7 +92,7 @@ function onDrop(e) {
 
 function emitVerification() {
   if (selectedFile.value) {
-    emit('verify', { image: selectedFile.value, global: isGlobal.value })
+    emit('verify', { image: selectedFile.value })
   }
 }
 </script>

@@ -54,48 +54,39 @@
       </div>
     </main>
 
-    <footer class="mt-auto border-t border-gray-100 py-8 px-6 text-center text-sm text-gray-400 font-medium">
-      <p>&copy; 2026 National Identity Commission - Advanced Biometric Search System</p>
-    </footer>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import UploadSection from './components/UploadSection.vue'
-import VerificationResult from './components/VerificationResult.vue'
 import Loader from './components/Loader.vue'
+import VerificationResult from './components/VerificationResult.vue'
 
 const result = ref(null)
 const loading = ref(false)
 
-function handleVerification({ image, global }) {
+function searchIdentity({ image }) {
   loading.value = true
   result.value = null
 
-  // Simulate Search Delay
+  // Simulate Universal Search Delay
   setTimeout(() => {
     loading.value = false
     
-    if (global) {
-      // Mock Profile (International)
-      result.value = {
-        isGlobal: true,
-        name: 'Jeon Jung-kook',
-        origin: 'South Korea',
-        about: 'A world-renowned singer, songwriter, and the youngest member of the global pop sensation BTS. Known for his versatility as the "Golden Maknae", he has achieved record-breaking success as both a group member and a solo artist.',
-        photo: URL.createObjectURL(image)
-      }
-    } else {
-      // Mock Profile (National)
-      result.value = {
-        isGlobal: false,
-        name: 'Bola Ahmed Adekunle Tinubu',
-        origin: 'Nigeria',
-        about: 'The 16th President of the Federal Republic of Nigeria, inaugurated on May 29, 2023. A seasoned political figure, he previously served as the Governor of Lagos State from 1999 to 2007, where he was instrumental in the state\'s modern transformation.',
-        photo: URL.createObjectURL(image)
-      }
+    // Extract a "Name" from the filename for a generic simulation
+    const fileName = image.name.split('.')[0]
+    const formattedName = fileName
+      .replace(/[_-]/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase()) || 'Unknown Subject'
+
+    // Generic Profile Response
+    result.value = {
+      name: formattedName,
+      origin: 'Global Citizen',
+      about: `This profile has been identified within the universal biometric database. The system has confirmed a match with high confidence, recognizing the subject based on globally indexed public records and professional registry data.`,
+      photo: URL.createObjectURL(image)
     }
-  }, 2500)
+  }, 2800)
 }
 </script>
