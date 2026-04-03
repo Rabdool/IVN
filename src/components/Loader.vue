@@ -50,12 +50,12 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const statuses = [
-  'Establishing Secure Link...',
-  'Accessing National Registry...',
-  'Running Biometric Match...',
-  'Analyzing Facial Geometry...',
-  'Checking NIN Database...',
-  'Finalizing Identity Match...'
+  'Wait a moment...',
+  'Analyzing Profile Features...',
+  'Searching Records...',
+  'Matching Identity...',
+  'Compiling Profile Info...',
+  'Finalizing Result...'
 ]
 
 const currentStatus = ref(statuses[0])

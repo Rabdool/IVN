@@ -69,25 +69,33 @@ import Loader from './components/Loader.vue'
 const result = ref(null)
 const loading = ref(false)
 
-function handleVerification(image) {
+function handleVerification({ image, global }) {
   loading.value = true
   result.value = null
 
-  // Simulate AI Analysis and Search Delay
+  // Simulate Search Delay
   setTimeout(() => {
     loading.value = false
-    // Mock detected ID from image (Bola Ahmed Tinubu)
-    result.value = {
-      status: 'Verified',
-      confidence: '99.8%',
-      name: 'Bola Ahmed Adekunle Tinubu',
-      nin: '1952-0329-4110',
-      dob: '29 March 1952',
-      gender: 'Male',
-      state: 'Lagos',
-      lga: 'Ikeja',
-      photo: URL.createObjectURL(image)
+    
+    if (global) {
+      // Mock Profile (International)
+      result.value = {
+        isGlobal: true,
+        name: 'Jeon Jung-kook',
+        origin: 'South Korea',
+        about: 'A world-renowned singer, songwriter, and the youngest member of the global pop sensation BTS. Known for his versatility as the "Golden Maknae", he has achieved record-breaking success as both a group member and a solo artist.',
+        photo: URL.createObjectURL(image)
+      }
+    } else {
+      // Mock Profile (National)
+      result.value = {
+        isGlobal: false,
+        name: 'Bola Ahmed Adekunle Tinubu',
+        origin: 'Nigeria',
+        about: 'The 16th President of the Federal Republic of Nigeria, inaugurated on May 29, 2023. A seasoned political figure, he previously served as the Governor of Lagos State from 1999 to 2007, where he was instrumental in the state\'s modern transformation.',
+        photo: URL.createObjectURL(image)
+      }
     }
-  }, 3500)
+  }, 2500)
 }
 </script>
