@@ -76,16 +76,16 @@ function handleVerification(image) {
   // Simulate AI Analysis and Search Delay
   setTimeout(() => {
     loading.value = false
-    // Mock detected ID from image
+    // Mock detected ID from image (Bola Ahmed Tinubu)
     result.value = {
       status: 'Verified',
-      confidence: '99.2%',
-      name: 'His Excellency, President GCFR',
-      nin: 'NIG-777-888-001',
-      dob: '12 March 2000',
+      confidence: '99.8%',
+      name: 'Bola Ahmed Adekunle Tinubu',
+      nin: '1952-0329-4110',
+      dob: '29 March 1952',
       gender: 'Male',
-      state: 'Kano',
-      lga: 'Tarauni',
+      state: 'Lagos',
+      lga: 'Ikeja',
       photo: URL.createObjectURL(image)
     }
   }, 3500)
