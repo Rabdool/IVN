@@ -25,7 +25,7 @@ import Loader from './components/Loader.vue'
 const result = ref(null)
 const loading = ref(false)
 
-function handleVerification(image) {
+function handleVerification(data) {
   loading.value = true
   result.value = null
 
@@ -36,13 +36,13 @@ function handleVerification(image) {
     result.value = {
       status: 'Verified',
       confidence: '98%',
-      name: 'Abdulrahman Kabir',
-      nin: '1234-5678-9012',
+      name: data.name,
+      nin: data.nin,
       dob: '12 March 2000',
       gender: 'Male',
       state: 'Kano',
       lga: 'Tarauni',
-      photo: URL.createObjectURL(image)
+      photo: URL.createObjectURL(data.image)
     }
   }, 2500)
 }
