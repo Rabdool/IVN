@@ -19,7 +19,7 @@
             </svg>
           </div>
           <p class="text-gray-900 font-bold text-lg mb-1">Drag image here or <span class="text-blue-600 underline underline-offset-4 decoration-2">browse files</span></p>
-          <p class="text-gray-400 text-sm">Upload a portrait to identify via National Registry</p>
+          <p class="text-gray-400 text-sm">Upload a portrait to identify via our universal database</p>
         </div>
 
         <div v-else class="flex flex-col items-center text-center px-4">
@@ -32,7 +32,7 @@
             </button>
           </div>
           <p class="text-blue-900 font-bold">{{ selectedFile.name }}</p>
-          <p class="text-gray-400 text-xs">Ready for registry lookup</p>
+          <p class="text-gray-400 text-xs">Ready for identification search</p>
         </div>
       </div>
 

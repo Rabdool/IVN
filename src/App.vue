@@ -1,48 +1,45 @@
 <template>
-  <div class="min-h-screen bg-[#f8fafc] text-[#1e293b] font-sans">
-    <!-- Navbar -->
-    <header class="bg-white border-b border-gray-200 py-3 px-6 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="bg-blue-600 p-2 rounded-lg">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+  <div class="min-h-screen bg-gray-50 font-sans text-gray-900 selection:bg-blue-100 pb-20">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50 backdrop-blur-md bg-white/80">
+      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2 group cursor-pointer">
+          <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
             </svg>
           </div>
-          <h1 class="text-xl font-bold tracking-tight text-blue-900 italic">IVN <span class="text-gray-400 font-normal ml-2 text-sm not-italic uppercase tracking-widest">National Registry Search</span></h1>
-        </div>
-        <div class="hidden md:flex gap-6 text-sm font-semibold text-gray-500 uppercase tracking-wider">
-          <span class="hover:text-blue-600 cursor-pointer">Database</span>
-          <span class="hover:text-blue-600 cursor-pointer">Security</span>
-          <span class="hover:text-blue-600 cursor-pointer">API Docs</span>
+          <h1 class="font-black text-xl tracking-tighter text-blue-900 uppercase">Image Identity <span class="text-blue-600">Verifier</span></h1>
         </div>
       </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12 md:py-20">
-      <div v-if="!result && !loading" class="text-center mb-12">
-        <h2 class="text-4xl font-extrabold text-blue-950 mb-4 tracking-tight">Identity Reverse Search</h2>
-        <p class="text-lg text-gray-500 max-w-xl mx-auto">Upload any portrait to match against the <span class="text-blue-600 font-bold">120M+ Records</span> in the National Registry Database.</p>
+    <main class="max-w-4xl mx-auto px-4 mt-20">
+      <!-- Title Section -->
+      <div v-if="!loading && !result" class="text-center mb-16 space-y-4">
+        <div class="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-black uppercase tracking-widest mb-2">
+          AI-Powered Visual Recognition
+        </div>
+        <h2 class="text-5xl md:text-6xl font-black text-gray-900 tracking-tight leading-tight">
+          Identify Anyone, <br/>
+          <span class="text-blue-600">Instantly.</span>
+        </h2>
+        <p class="text-gray-400 text-lg font-medium max-w-xl mx-auto">
+          Upload an image to discover the identity associated with any portrait using our universal identity recognition engine.
+        </p>
       </div>
 
       <div class="relative">
-        <UploadSection v-if="!loading && !result" @verify="handleVerification" />
+        <UploadSection v-if="!loading && !result" @verify="searchIdentity" />
+        <Loader v-if="loading" />
         
-        <div v-if="loading" class="mt-8 transition-all animate-in fade-in zoom-in duration-500">
-          <Loader />
-        </div>
-
-        <div v-if="result && !loading" class="mt-4 transition-all animate-in slide-in-from-bottom duration-700">
-          <div class="flex items-center justify-between mb-6 px-2">
-            <div class="flex items-center gap-2 text-sm text-gray-600">
-              <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                1 Best Match Found
-              </span>
-              <span class="text-gray-300">|</span>
-              <span>Search took 3.5s</span>
+        <div v-if="result && !loading">
+          <div class="flex items-center justify-between mb-8 px-2">
+            <div class="flex items-center gap-2 text-sm text-gray-400 font-bold uppercase tracking-widest">
+              <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              Discovery Complete
             </div>
-            <button @click="result = null" class="text-sm font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 group">
+            <button @click="result = null" class="text-sm font-black text-blue-600 hover:text-blue-800 flex items-center gap-2 group transition-colors">
               <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
@@ -53,7 +50,6 @@
         </div>
       </div>
     </main>
-
   </div>
 </template>
 
