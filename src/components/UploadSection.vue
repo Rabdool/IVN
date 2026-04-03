@@ -19,7 +19,7 @@
             </svg>
           </div>
           <p class="text-gray-900 font-bold text-lg mb-1">Drag image here or <span class="text-blue-600 underline underline-offset-4 decoration-2">browse files</span></p>
-          <p class="text-gray-400 text-sm">Upload a portrait to identify via National Registry</p>
+          <p class="text-gray-400 text-sm">Upload a portrait to identify via our universal database</p>
         </div>
 
         <div v-else class="flex flex-col items-center text-center px-4">
@@ -32,7 +32,7 @@
             </button>
           </div>
           <p class="text-blue-900 font-bold">{{ selectedFile.name }}</p>
-          <p class="text-gray-400 text-xs">Ready for registry lookup</p>
+          <p class="text-gray-400 text-xs">Ready for identification search</p>
         </div>
       </div>
 
@@ -49,17 +49,10 @@
       </button>
     </div>
 
-    <!-- Quick Info -->
-    <div class="mt-4 flex flex-wrap justify-center gap-6 text-sm text-gray-400 font-medium">
-      <div class="flex items-center gap-1.5">
-        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M2.166 4.9L10 1.554 17.834 4.9c.427.182.723.633.723 1.14v5.04c0 3.328-2.361 6.17-5.556 7.143L10 19l-3.001-.817C3.806 17.21 1.445 14.368 1.445 11.041v-5.04c0-.507.296-.958.721-1.14zM10 3.062L4.313 5.5v4.54a7.001 7.001 0 004.582 6.517l1.105.301 1.105-.301a7.001 7.001 0 004.582-6.517V5.5L10 3.062z" clip-rule="evenodd" />
-        </svg>
-        Secure Biometric Transfer
-      </div>
-      <div class="flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-        Database Online
+    <!-- Unified Search Label -->
+    <div class="mt-8 flex flex-col items-center justify-center gap-4 px-4">
+      <div class="bg-blue-50/50 px-6 py-2 rounded-full border border-blue-100/50 text-blue-600 font-bold text-xs uppercase tracking-[0.25em] animate-pulse">
+        Universal Identity Recognition Engine
       </div>
     </div>
   </div>
@@ -99,7 +92,7 @@ function onDrop(e) {
 
 function emitVerification() {
   if (selectedFile.value) {
-    emit('verify', selectedFile.value)
+    emit('verify', { image: selectedFile.value })
   }
 }
 </script>
